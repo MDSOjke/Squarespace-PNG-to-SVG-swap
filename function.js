@@ -31,5 +31,3 @@ function SVGSwap(){
             }
           }
         }
-
-Y.on('load', SVGSwap());
