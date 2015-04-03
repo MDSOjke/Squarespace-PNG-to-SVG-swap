@@ -2,8 +2,8 @@ function SVGSwap(){
         var swapPool = {};
         // Object arrays for which swap is needed. For every file define own array.
         var logoObjects = [
-          	 Y.one('#logoImage img'),
-        	   Y.one('#new-page-section img')
+          	Y.one('#logoImage img'),
+        	Y.one('#new-page-section img')
         ];
         var cafeObjects = [Y.one('#the-cafe-section .sqs-row .sqs-col-8 img')];
         var contactObjects = [Y.one('#block-yui_3_17_2_4_1423063022565_8791 img')];
@@ -16,9 +16,9 @@ function SVGSwap(){
         var linkPath = "/s/";
         //Building swapPool with all properties
         swapNameList.forEach(function(value, index){
-          	 swapPool[value] = {};
-        	   swapPool[value].filePath = linkPath+swapFileList[index];
-          	 swapPool[value].swapObject = swapObjectsArrays[index];
+          	swapPool[value] = {};
+        	swapPool[value].filePath = linkPath+swapFileList[index];
+          	swapPool[value].swapObject = swapObjectsArrays[index];
         });
         // Function defines if browser support .svg
         if(Y.one('html.svg')){
@@ -27,6 +27,9 @@ function SVGSwap(){
                //YUI array-functions cut-off
                if(typeof swapPool[key].swapObject[i] == "object"){
             		swapPool[key].swapObject[i].setAttribute('src', swapPool[key].filePath);
+               //Data-src+data-image change to fix Apple devices bug
+                 	swapPool[key].swapObject[i].setAttribute('data-src', swapPool[key].filePath);
+                 	swapPool[key].swapObject[i].setAttribute('data-image', swapPool[key].filePath);
                }
             }
           }
